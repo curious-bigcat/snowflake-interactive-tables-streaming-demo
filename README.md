@@ -315,7 +315,7 @@ Key config properties:
 | "Token has expired" | Connector auth token expired after hours | Delete and redeploy connector: `curl -X DELETE .../connectors/...; ./deploy-connector.sh` |
 | "Cannot ingest into interactive tables" | Using old connector (v2.4.1) | Must use connector v4.0+ with `SnowflakeStreamingSinkConnector` |
 | "SnowflakeStreamingSinkConnector not found" | Wrong connector version installed | Use connector 4.0.0 from Maven Central (not confluent-hub 2.x) |
-| "snowflake.url.name is not valid" | Wrong account format | Use just `ORG-ACCOUNT` (e.g., `SFSEAPAC-BSURESH`), connector appends `.snowflakecomputing.com` |
+| "snowflake.url.name is not valid" | Wrong account format | Use just `ORG-ACCOUNT` (e.g., `MYORG-MYACCOUNT`), connector appends `.snowflakecomputing.com` |
 | "validate.compatibility.with.classic" error | v4 migration checks enabled | Add `"snowflake.streaming.validate.compatibility.with.classic": "false"` |
 | Dashboard shows 300-400ms latency locally | Network overhead (local → Snowflake cloud) | Deploy to SPCS; actual Snowflake execution is sub-100ms (verify with QUERY_HISTORY) |
 | Same latency on all widgets | Using global average instead of per-query | Use per-route `Date.now()` measurement (queryMs) |
