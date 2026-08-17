@@ -1,0 +1,15 @@
+install:
+  commands:
+    - ["npm", "ci", "--include=dev"]
+
+run:
+  command: ["node", ".next/standalone/server.js"]
+  env:
+    SNOWFLAKE_WAREHOUSE: ECOM_IWH
+    SNOWFLAKE_DATABASE: ECOM_STREAMING
+    SNOWFLAKE_SCHEMA: CLICKSTREAM
+
+profile:
+  label: "E-Commerce Streaming Analytics"
+  description: "Real-time clickstream analytics on Interactive Tables with Snowpipe Streaming v2"
+  icon: public/icon.svg

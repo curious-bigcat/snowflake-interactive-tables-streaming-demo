@@ -1,0 +1,13 @@
+definition_version: "2"
+entities:
+  ecom-streaming-dashboard:
+    type: snowflake-app
+    identifier:
+      name: ecom_streaming_dashboard
+    artifacts:
+      - app.yml
+      - .next/**
+      - public/**
+      - package.json
+      - package-lock.json
+      - node_modules/**

@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.env
+.env.local
+*.pem
+*.key
+*.p8
+*.pub
+kafka/keys/
+__pycache__/
+*.pyc
+.DS_Store

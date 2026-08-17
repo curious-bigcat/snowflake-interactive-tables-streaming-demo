@@ -1,0 +1,12 @@
+FROM confluentinc/cp-kafka-connect:7.6.0
+
+# Install Snowflake Kafka Connector 4.0 (GA) from Maven Central
+# Version 4.0 supports SnowflakeStreamingSinkConnector with Snowpipe Streaming v2
+# which is required for ingesting into Interactive Tables.
+RUN mkdir -p /usr/share/confluent-hub-components/snowflake-kafka-connector/lib && \
+    cd /usr/share/confluent-hub-components/snowflake-kafka-connector/lib && \
+    curl -sLO https://repo1.maven.org/maven2/com/snowflake/snowflake-kafka-connector/4.0.0/snowflake-kafka-connector-4.0.0.jar && \
+    curl -sLO https://repo1.maven.org/maven2/org/bouncycastle/bc-fips/1.0.2.5/bc-fips-1.0.2.5.jar && \
+    curl -sLO https://repo1.maven.org/maven2/org/bouncycastle/bcpkix-fips/1.0.7/bcpkix-fips-1.0.7.jar
+
+ENV CONNECT_PLUGIN_PATH="/usr/share/confluent-hub-components"
