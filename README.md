@@ -34,6 +34,77 @@ Measured from Snowsight notebook (zero network overhead):
 
 **100% of queries execute sub-100ms** on the Interactive Warehouse with warm cache.
 
+## Dashboard Screenshots & Outcomes
+
+### Header + Query Execution Performance
+![Header and Latency KPIs](screenshots/01-header-latency-kpis.jpeg)
+
+- **QPS**: 3.2 queries/second sustained
+- **Snowflake latency**: 294ms total (175ms exec + 118ms compile)
+- **Sub-100ms queries**: 23/46 (50%) from QUERY_HISTORY
+- **Sub-10ms queries**: 3/46 (point lookups)
+- **Live event count**: 66,994 events in last 10 seconds
+
+### Revenue & Conversion Funnel
+![Revenue and Conversion Funnel](screenshots/02-revenue-conversion-funnel.jpeg)
+
+- **Revenue**: $44,710.15 in last 5 minutes (real-time)
+- **Conversion Rate**: 4.79%
+- **Funnel**: 400 page views → 273 purchases
+- **Widget latency**: 205ms round-trip
+
+### Trending Products
+![Trending Products](screenshots/03-trending-products.jpeg)
+
+- Top 10 products ranked by views, updating live every 3 seconds
+- GROUP BY + ORDER BY query returns in **277ms** round-trip
+
+### Geographic Breakdown
+![Geographic Breakdown](screenshots/04-geographic-breakdown.jpeg)
+
+- 12 locations across US, UK, and Canada
+- 333–342 concurrent users per US city
+- Multi-dimension aggregation in **289ms**
+
+### Live Event Stream + Device Breakdown
+![Live Events and Device Breakdown](screenshots/05-live-events-device-breakdown.jpeg)
+
+- Color-coded event types (purchase, product_view, add_to_cart, checkout)
+- Device split: Mobile ~50%, Desktop ~35%, Tablet ~15%
+- Donut chart query in **261ms**
+
+### Query Speed Test (Key Result)
+![Query Speed Test](screenshots/06-query-speed-test.jpeg)
+
+Per-query Snowflake execution times from QUERY_HISTORY:
+
+| Query | Execution | Round-trip |
+|-------|-----------|------------|
+| Point lookup (single user) | **35ms** | 209ms |
+| Point lookup (single event) | **33ms** | 123ms |
+| Count last 10 seconds | **1ms** | 87ms |
+| Latest event | **103ms** | 322ms |
+| Distinct users (30s) | **51ms** | 133ms |
+| Aggregate by device (1 min) | **48ms** | 117ms |
+| Top product (1 min) | **39ms** | 116ms |
+| Revenue sum (1 min) | **39ms** | 219ms |
+
+**Outcome: 7/8 queries under 100ms, 6/8 under 50ms, 1/8 under 10ms**
+
+### QPS Burst Test (Stress Test)
+![QPS Burst Test](screenshots/07-qps-burst-test.jpeg)
+
+100 concurrent queries fired simultaneously:
+
+- **Throughput**: 44.6 QPS
+- **Avg Execution**: 88ms (Snowflake only)
+- **p95 Execution**: 132ms
+- **p95 Round-trip**: 2,209ms
+- **Success Rate**: 100%
+- **Wall Clock**: 2.24s for all 100 queries
+
+**Outcome: Interactive Warehouse handles 44+ QPS sustained load with sub-100ms avg execution and zero failures.**
+
 ## Prerequisites
 
 - Docker Desktop
